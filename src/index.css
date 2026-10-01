@@ -88,13 +88,21 @@ body {
   animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.15, 1) both;
 }
 
-/* ---------- Emblem ---------- */
+/* ---------- Emblem: head sits in the upper half, eye stays clear ---------- */
 .emblem-box {
   position: absolute;
-  inset: 0;
-  margin: auto;
-  width: min(880px, 92vw);
+  left: 50%;
+  top: -6%;
+  width: min(980px, 96vw);
   aspect-ratio: 1 / 1;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 640px) {
+  .emblem-box {
+    top: -2%;
+    width: min(720px, 128vw);
+  }
 }
 
 .emblem-bg {
@@ -104,81 +112,63 @@ body {
   background-position: center;
   background-size: contain;
   filter: grayscale(8%) brightness(1.05);
-  -webkit-mask-image: radial-gradient(circle at center, black 42%, transparent 72%);
-  mask-image: radial-gradient(circle at center, black 42%, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle at 50% 38%, black 36%, transparent 70%);
+  mask-image: radial-gradient(circle at 50% 38%, black 36%, transparent 70%);
   animation: breathe 10s ease-in-out infinite;
 }
 
 .halo {
   position: absolute;
-  inset: 0;
-  margin: auto;
-  width: min(640px, 70vw);
+  left: 50%;
+  top: 28%;
+  width: 58%;
   aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
   border-radius: 9999px;
-  background: radial-gradient(circle, rgba(205, 164, 94, 0.26), transparent 70%);
+  background: radial-gradient(circle, rgba(205, 164, 94, 0.28), transparent 70%);
   animation: haloPulse 7s ease-in-out infinite;
 }
 
-/* ---------- Eagle eye ---------- */
+/* ---------- Eagle eye (Sharp, Predatory Raptor Form) ---------- */
 .eye {
   position: absolute;
-  width: 2.4%;
-  aspect-ratio: 1 / 1;
-  transform: translate(-50%, -50%);
+  width: 2.7%;
+  aspect-ratio: 100 / 52;
+  transform: translate(-50%, -50%) rotate(2.5deg);
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px rgba(205, 164, 94, 0.35));
 }
 
 .eye-lid {
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-  overflow: hidden;
-  background: radial-gradient(circle, rgba(243, 220, 163, 0.9) 0%, rgba(205, 164, 94, 0.75) 55%, rgba(205, 164, 94, 0) 72%);
-  box-shadow: 0 0 14px 3px rgba(205, 164, 94, 0.35);
-  animation: blink 7s ease-in-out infinite;
-  transform-origin: center;
+  transform-origin: 50% 16%;
+  animation: eagleBlink 7.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-.eye-iris {
-  position: absolute;
-  inset: 18%;
-  border-radius: 50%;
-  background: radial-gradient(circle, #e9c784 0%, #b8893b 60%, #7a5a22 100%);
+.eagle-eye-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
 }
 
-.eye-pupil {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 36%;
-  height: 36%;
-  border-radius: 50%;
-  background: #0a0806;
-  transform: translate(-50%, -50%);
+.eagle-pupil-group {
   will-change: transform;
 }
 
-.eye-glint {
-  position: absolute;
-  left: 42%;
-  top: 40%;
-  width: 14%;
-  height: 14%;
-  border-radius: 50%;
-  background: rgba(255, 248, 225, 0.95);
-  transform: translate(-50%, -50%);
-  will-change: transform;
-}
-
-@keyframes blink {
+@keyframes eagleBlink {
   0%,
-  93%,
+  94%,
   100% {
     transform: scaleY(1);
   }
-  95.5% {
-    transform: scaleY(0.08);
+  95.2% {
+    transform: scaleY(0.06);
+  }
+  96.4% {
+    transform: scaleY(1);
   }
 }
 
